@@ -50,7 +50,7 @@ function startVideo() {
       audio: false,
       video: {
         facingMode: {
-          exact: "enviroment"
+          exact: "environment"
         }
       }
     });
@@ -109,8 +109,11 @@ function predict() {
         marker_pos[i] = (marker_pos[i] + tmp_marker_pos[i]) / 2.0
       }
     }
+
+    return true;
     //console.log(marker_pos)
   }
+  return false;
 }
 
 function draw() {
@@ -119,20 +122,23 @@ function draw() {
   if (cvReady()) {
     if (video != null) {
 
-      predict();
+      
 
       image(capture, captureOffsetX, captureOffsetY, captureWidth, captureHeight);
       image(video, 10, 10, 1000, 100);
 
-      if (marker_pos != null) {
+      if (predict()) {
         for (i = 0; i < marker_pos.length / 2; i++) {
           fill(255, 0, 0)
           //console.log(marker_pos[i*2+1]*captureWidth + captureOffsetX, marker_pos[i*2+1]*captureHeight)
           ellipse(marker_pos[i * 2] * captureWidth + captureOffsetX, marker_pos[i * 2 + 1] * captureHeight + captureOffsetY, 20, 20)
         }
       }
+      else {
+        text("Loading model...", width / 2, height / 2);
+      }
     } else {
-      text("Pleas click on the screen.", width / 2, height / 2);
+      text("Please click on the screen.", width / 2, height / 2);
     }
   }
 }
