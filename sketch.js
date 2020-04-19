@@ -46,7 +46,14 @@ function cvReady() {
 
 function startVideo() {
   if (capture == null) {
-    capture = createCapture(VIDEO);
+    capture = createCapture({
+      audio: false,
+      video: {
+        facingMode: {
+          exact: "enviroment"
+        }
+      }
+    });
     capture.hide()
 
 
