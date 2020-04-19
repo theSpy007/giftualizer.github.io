@@ -11,7 +11,6 @@ let marker_pos = null;
 let inputMat, videoMat;
 
 async function setup() {
-  fullscreen(true)
   createCanvas(windowWidth, windowHeight);
 
   textAlign(CENTER, CENTER);
@@ -47,6 +46,7 @@ function cvReady() {
 
 function startVideo() {
   if (capture == null) {
+    fullscreen(true)
     capture = createCapture({
       video: {
           facingMode: "environment"
