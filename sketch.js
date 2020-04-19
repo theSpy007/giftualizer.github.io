@@ -47,13 +47,10 @@ function cvReady() {
 function startVideo() {
   if (capture == null) {
     capture = createCapture({
-      audio: false,
       video: {
-        facingMode: {
-          exact: "environment"
-        }
+          facingMode: "environment"
       }
-    });
+    };);
     capture.hide()
 
 
@@ -125,7 +122,7 @@ function draw() {
       
 
       image(capture, captureOffsetX, captureOffsetY, captureWidth, captureHeight);
-      image(video, 10, 10, 1000, 100);
+      // image(video, 10, 10, 1000, 100);
 
       if (predict()) {
         for (i = 0; i < marker_pos.length / 2; i++) {
