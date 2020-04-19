@@ -1,13 +1,38 @@
-<!DOCTYPE html><html lang="en"><head>
-    <script src="p5.js"></script>
-    <script src="p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="tfjs@0.8.0"></script>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
 
-  </head>
-  <body>
-    <script src="sketch.js"></script>
-  
+<head>
 
-</body></html>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <script src="p5.js"></script>
+  <script src="p5.sound.min.js"></script>
+  <script>
+    window.Module = {
+      loaded: false,
+      print: console.log,
+      printErr: function (text) {
+        //document.getElementById('status').innerHTML = text;
+        console.error(text);
+      },
+      setStatus: function (text) {
+        //document.getElementById('status').innerHTML = text;
+        console.log(text);
+      },
+      onRuntimeInitialized: function () {
+        //document.getElementById('status').innerHTML = 'Loaded';
+        this.loaded = true;
+        // it would be better if we created the sketch at this point
+      }
+    };
+  </script>
+  <script async src="cv.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+  <!-- <p>OpenCV Status: <span id="status">Loading OpenCV...</span></p> -->
+  <script src="sketch.js"></script>
+</body>
+
+</html>
