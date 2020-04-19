@@ -50,7 +50,7 @@ function startVideo() {
       video: {
           facingMode: "environment"
       }
-    };);
+    });
     capture.hide()
 
 
