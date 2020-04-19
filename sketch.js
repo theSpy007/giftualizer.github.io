@@ -11,6 +11,7 @@ let marker_pos = null;
 let inputMat, videoMat;
 
 async function setup() {
+  fullscreen(true)
   createCanvas(windowWidth, windowHeight);
 
   textAlign(CENTER, CENTER);
