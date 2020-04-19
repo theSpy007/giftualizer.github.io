@@ -90,14 +90,14 @@ function predict() {
     tensor = tensor.div(3);
     tensor = tensor.expandDims(2);
     tensor = tensor.expandDims(0);
-    
+
     //tensor = tf.tensor([tensor]);
-    
+
     tmp_marker_pos = model.predict(tensor).arraySync()[0];
-    if (marker_pos == null){
+    if (marker_pos == null) {
       marker_pos = tmp_marker_pos;
-    }else{
-      for(i = 0; i < tmp_marker_pos.length; i++){
+    } else {
+      for (i = 0; i < tmp_marker_pos.length; i++) {
         //console.log(marker_pos[i] + tmp_marker_pos[0][i])
         marker_pos[i] = (marker_pos[i] + tmp_marker_pos[i]) / 2.0
       }
@@ -117,10 +117,12 @@ function draw() {
       image(capture, captureOffsetX, captureOffsetY, captureWidth, captureHeight);
       image(video, 10, 10, 1000, 100);
 
-      for(i = 0; i < marker_pos.length/2; i++){
-        fill(255,0,0)
-        //console.log(marker_pos[i*2+1]*captureWidth + captureOffsetX, marker_pos[i*2+1]*captureHeight)
-        ellipse(marker_pos[i*2]*captureWidth + captureOffsetX, marker_pos[i*2+1]*captureHeight + captureOffsetY, 20, 20)
+      if (marker_pos != null) {
+        for (i = 0; i < marker_pos.length / 2; i++) {
+          fill(255, 0, 0)
+          //console.log(marker_pos[i*2+1]*captureWidth + captureOffsetX, marker_pos[i*2+1]*captureHeight)
+          ellipse(marker_pos[i * 2] * captureWidth + captureOffsetX, marker_pos[i * 2 + 1] * captureHeight + captureOffsetY, 20, 20)
+        }
       }
     } else {
       text("Pleas click on the screen.", width / 2, height / 2);
